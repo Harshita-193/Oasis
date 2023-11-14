@@ -35,3 +35,57 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+'''Main File GUI'''
+
+import tkinter as tk
+from tkinter import messagebox
+from functools import partial
+
+def generate_password(length, use_letters, use_numbers, use_symbols):
+    # Same function as in the command-line version
+
+def generate_and_show_password():
+    length, use_letters, use_numbers, use_symbols = get_user_input()
+    password = generate_password(length, use_letters, use_numbers, use_symbols)
+    if password:
+        result_label.config(text=f"Generated Password: {password}")
+    else:
+        messagebox.showerror("Error", "Please include at least one character type.")
+
+def get_user_input():
+    # Same function as in the command-line version
+
+# GUI setup
+app = tk.Tk()
+app.title("Password Generator")
+
+length_label = tk.Label(app, text="Password Length:")
+length_label.pack()
+
+length_entry = tk.Entry(app)
+length_entry.pack()
+
+checkbox_frame = tk.Frame(app)
+checkbox_frame.pack()
+
+use_letters_var = tk.IntVar()
+use_letters_checkbox = tk.Checkbutton(checkbox_frame, text="Include letters", variable=use_letters_var)
+use_letters_checkbox.pack(side=tk.LEFT)
+
+use_numbers_var = tk.IntVar()
+use_numbers_checkbox = tk.Checkbutton(checkbox_frame, text="Include numbers", variable=use_numbers_var)
+use_numbers_checkbox.pack(side=tk.LEFT)
+
+use_symbols_var = tk.IntVar()
+use_symbols_checkbox = tk.Checkbutton(checkbox_frame, text="Include symbols", variable=use_symbols_var)
+use_symbols_checkbox.pack(side=tk.LEFT)
+
+generate_button = tk.Button(app, text="Generate Password", command=generate_and_show_password)
+generate_button.pack()
+
+result_label = tk.Label(app, text="")
+result_label.pack()
+
+app.mainloop()
